@@ -27,8 +27,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
-
+            android:value="AIzaSyCs4vVCyzt4V6-7fsHKT7hIVcpjBmjdS7g" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -44,7 +43,6 @@
             android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/dku_buildings"
+        android:title="@string/dku_buildings" />
+
+    <item
+        android:id="@+id/search_road"
+        android:title="@string/search_road" >
+    </item>
+
+    <item
+        android:id="@+id/item3"
+        android:title="@string/item3"/>
+</menu>
