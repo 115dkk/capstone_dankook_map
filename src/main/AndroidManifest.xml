@@ -13,7 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Capstone_dankook_map"
         tools:targetApi="31">
-
+        <activity
+            android:name=".InsideActivity"
+            android:exported="false"
+            android:label="InsideActivity"
+            android:theme="@style/Theme.Capstone_dankook_map"
+            android:parentActivityName=".BuildingsActivity"/>
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -28,21 +33,28 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCs4vVCyzt4V6-7fsHKT7hIVcpjBmjdS7g" />
+
         <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".BuildingsActivity"
+            android:exported="true"
+            android:parentActivityName=".MapsActivity"></activity>
         <activity
             android:name=".MapsActivity"
             android:exported="true"
             android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

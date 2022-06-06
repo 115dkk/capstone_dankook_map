@@ -32,15 +32,62 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        val dku = LatLng(37.3226546, 127.1260339)
+
+        val lat = intent.getDoubleExtra("lat", 37.3226546)
+        val lon = intent.getDoubleExtra("lon", 127.1260339)
+        var title = "단국대학교"
+        var snippet = "한국 체고의 명문머학교"
+        val change = intent.getBooleanExtra("change", false)
+        val isinside = intent.getBooleanExtra("isinside", false)
+
+        if(change) {
+            title = intent.getStringExtra("title").toString()
+            snippet = intent.getStringExtra("snippet").toString()
+        }
+
+        val dku = LatLng(lat, lon)
         val markerOptions = MarkerOptions() // 마커 생성
         markerOptions.position(dku)
-        markerOptions.title("단국대학교") // 마커 제목
-        markerOptions.snippet("한국 체고 머학교") // 마커 설명
+        markerOptions.title(title) // 마커 제목
+        markerOptions.snippet(snippet) // 마커 설명
         mMap.addMarker(markerOptions)
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(dku)) // 초기 위치
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15f)) // 줌의 정도
+
+        if(isinside) {
+            mMap.setOnMarkerClickListener {
+                when(intent.getStringExtra("intent").toString()){
+                    "InsideActivity" ->
+                        intent = Intent(applicationContext, InsideActivity::class.java)
+                }
+                //var intent = Intent(applicationContext, BuildingsActivity::class.java)
+
+                startActivity(intent)
+                false
+            }
+        }
     }
+
+ //   fun changeMapReady(googleMap: GoogleMap) {
+ //       mMap = googleMap
+//
+//        val lat = intent.getDoubleExtra("lat", 37.3226546)
+//        val lon = intent.getDoubleExtra("lon", 127.1260339)
+//        var title = "단국대학교"
+//        var snippets = "한국 체고의 명문머학교"
+//
+//        var change = intent.getBooleanExtra("change", false)
+//
+//        val dku = LatLng(lat, lon)
+//        val markerOptions = MarkerOptions() // 마커 생성
+//        markerOptions.position(dku)
+//        markerOptions.title(title) // 마커 제목
+//        markerOptions.snippet(snippets) // 마커 설명
+//        mMap.addMarker(markerOptions)
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(dku)) // 초기 위치
+//        mMap.animateCamera(CameraUpdateFactory.zoomTo(15f)) // 줌의 정도
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
@@ -51,10 +98,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val intent = Intent(applicationContext, SplashActivity::class.java)
+        val buildingIntent = Intent(applicationContext, BuildingsActivity::class.java)
         when (item?.itemId) {
-            R.id.dku_buildings -> startActivity(intent)
+            R.id.dku_buildings -> startActivity(buildingIntent)
             R.id.search_road -> startActivity(intent)
-            R.id.item3 -> startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }

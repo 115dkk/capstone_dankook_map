@@ -1,7 +1,8 @@
 package com.example.capstone_dankook_map
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -10,10 +11,32 @@ class BuildingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_maps)
+        setContentView(R.layout.activity_building)
+        val door = findViewById<Button>(R.id.door_front)
+        val lib = findViewById<Button>(R.id.Library)
+        val intent = Intent(applicationContext, MapsActivity::class.java)
 
-        door_front.setOnClickListener{ //(2)
-            Toast.makeText(applicationContext, "버튼1 클릭", Toast.LENGTH_LONG).show()
+        door.setOnClickListener{
+
+            intent.putExtra("lat", 37.323476641)
+            intent.putExtra("lon", 127.12550096)
+            intent.putExtra("title", "단국대학교 정문")
+            intent.putExtra("snippet", "단국시의 관문")
+            intent.putExtra("change", true)
+            intent.putExtra("isinside", false)
+
+            startActivity(intent)
+        }
+        lib.setOnClickListener {
+            intent.putExtra("lat", 37.321168128)
+            intent.putExtra("lon", 127.1274602)
+            intent.putExtra("title", "퇴계기념중앙도서관")
+            intent.putExtra("snippet", "조용하게 공부할 수 있는 곳")
+            intent.putExtra("change", true)
+            intent.putExtra("isinside", true)
+            intent.putExtra("intent", "InsideActivity")
+
+            startActivity(intent)
         }
     }
 }
