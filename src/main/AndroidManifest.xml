@@ -16,7 +16,13 @@
         <activity
             android:name=".InsideActivity"
             android:exported="false"
-            android:label="InsideActivity"
+            android:label="@string/title_activity_inside"
+            android:theme="@style/Theme.Capstone_dankook_map"
+            android:parentActivityName=".BuildingsActivity"/>
+        <activity
+            android:name=".InsideActivity2"
+            android:exported="false"
+            android:label="@string/title_activity_inside"
             android:theme="@style/Theme.Capstone_dankook_map"
             android:parentActivityName=".BuildingsActivity"/>
         <!--
@@ -47,7 +53,8 @@
         <activity
             android:name=".BuildingsActivity"
             android:exported="true"
-            android:parentActivityName=".MapsActivity"></activity>
+            android:label="@string/title_activity_building"
+            android:parentActivityName=".MapsActivity" />
         <activity
             android:name=".MapsActivity"
             android:exported="true"

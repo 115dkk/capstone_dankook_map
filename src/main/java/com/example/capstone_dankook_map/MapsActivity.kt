@@ -2,6 +2,7 @@ package com.example.capstone_dankook_map
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -36,7 +37,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val lat = intent.getDoubleExtra("lat", 37.3226546)
         val lon = intent.getDoubleExtra("lon", 127.1260339)
         var title = "단국대학교"
-        var snippet = "한국 체고의 명문머학교"
+        var snippet = "한국 최고의 명문대학교"
         val change = intent.getBooleanExtra("change", false)
         val isinside = intent.getBooleanExtra("isinside", false)
 
@@ -56,16 +57,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15f)) // 줌의 정도
 
         if(isinside) {
-            mMap.setOnMarkerClickListener {
-                when(intent.getStringExtra("intent").toString()){
-                    "InsideActivity" ->
-                        intent = Intent(applicationContext, InsideActivity::class.java)
-                }
-                //var intent = Intent(applicationContext, BuildingsActivity::class.java)
+            Handler().postDelayed({
+                mMap.setOnMarkerClickListener {
+                    when (intent.getStringExtra("intent").toString()) {
+                        "InsideActivity" ->
+                            intent = Intent(applicationContext, InsideActivity::class.java)
+                        "InsideActivity2" ->
+                            intent = Intent(applicationContext, InsideActivity2::class.java)
+                    }
+                    //var intent = Intent(applicationContext, BuildingsActivity::class.java)
 
-                startActivity(intent)
-                false
-            }
+                    startActivity(intent)
+                    false
+                }
+            }, (3000).toLong())
         }
     }
 
