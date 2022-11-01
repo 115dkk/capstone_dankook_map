@@ -23,12 +23,12 @@ class InsideActivity : AppCompatActivity() {
         val imageview = findViewById<ImageView>(R.id.imageView3)
 
         when (item?.itemId) {
-            R.id.b2f -> imageview.setImageResource(R.mipmap.library_floor_b2)
-            R.id.b1f -> imageview.setImageResource(R.mipmap.library_floor_b1)
-            R.id.u1f -> imageview.setImageResource(R.mipmap.library_floor_1)
-            R.id.u2f -> imageview.setImageResource(R.mipmap.library_floor_2)
-            R.id.u3f -> imageview.setImageResource(R.mipmap.library_floor_3)
-            R.id.u4f -> imageview.setImageResource(R.mipmap.library_floor_4)
+            R.id.b2f -> imageview.setImageResource(R.mipmap.lib_fl_1)
+            R.id.b1f -> imageview.setImageResource(R.mipmap.lib_fl_2)
+            R.id.u1f -> imageview.setImageResource(R.mipmap.lib_fl_3)
+            R.id.u2f -> imageview.setImageResource(R.mipmap.lib_fl_4)
+            R.id.u3f -> imageview.setImageResource(R.mipmap.lib_fl_5)
+            R.id.u4f -> imageview.setImageResource(R.mipmap.lib_fl_6)
         }
         return super.onOptionsItemSelected(item)
     }
