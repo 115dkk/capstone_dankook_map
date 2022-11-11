@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.capstone_dankook_map.astar.AStar
 import com.example.capstone_dankook_map.astar.Node
@@ -15,11 +16,12 @@ class InsideActivity : AppCompatActivity() {
         setContentView(R.layout.activity_inside)
 
         val btn = findViewById<Button>(R.id.button)
+        val text = findViewById<TextView>(R.id.textView)
 
         btn.setOnClickListener{
             val ans = Astar(3,3)
             val intStr: String = ans.replace("[^0-9]", "")
-            println(intStr)
+            text.setText(ans)
         }
     }
 
