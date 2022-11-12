@@ -13,6 +13,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import androidx.room.Room
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -29,6 +34,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        val dkuDB =
+            Room.databaseBuilder(applicationContext, DKUMapLibDB::class.java, "DK_MAP_LIB_FLOOR")
+                .createFromAsset("databases/DKU_Lib_Kor.db").build()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            dkuDB.dklibDAO().delete(DKLib(0,"","","","","",""))
+        }
+        CoroutineScope(Dispatchers.IO).launch {
+            dkuDB.dklibDAO().getAll()
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -97,7 +113,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         menuInflater.inflate(R.menu.mainmenu, menu)
-
         return true
     }
 
